@@ -22,7 +22,7 @@
                 "removeDir": false,
                 "removeFile": false,
                 "renameFile": false,
-                "scope": ["$APP/*", "$DOCUMENT/*"],
+                "scope": ["$APP/*", "$DOCUMENT/*", "$LOCALDATA/*"],
                 "writeFile": true
             }
         },
@@ -41,7 +41,7 @@
                 "icons/icon.icns",
                 "icons/icon.ico"
             ],
-            "identifier": "com.tauri.dev",
+            "identifier": "taurilogger",
             "longDescription": "",
             "macOS": {
                 "entitlements": null,
