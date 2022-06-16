@@ -6,7 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 
 import { intitializeLogger, diagnosticLogger } from "./utils/logger";
 
-intitializeLogger();
+intitializeLogger({
+    reportErrors: true,
+});
 diagnosticLogger();
 
 const root = ReactDOM.createRoot(

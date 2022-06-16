@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { tempLogger } from "./utils/logger";
+import { tempLogger, testError } from "./utils/logger";
 
 function App() {
     return (
