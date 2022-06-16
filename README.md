@@ -1,46 +1,105 @@
-# Getting Started with Create React App
+## Log critical actions through your frontend like you would do with console.log and store them locally!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## IMPORTANT! Don't forget to set your scopes:
 
-In the project directory, you can run:
 
-### `yarn start`
+**If you use the default dir-name option (see below)**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+"tauri": {
+        "allowlist": {
+		"fs": {
+			"createDir": true,
+			"writeFile": true,
+			"scope": ["$DOCUMENT/YOURAPPNAME/logs"]
+			}
+		}
+}
+```
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Or if you use a **custom dir name** you will have to change the YOURAPPNAME accordingly
 
-### `yarn build`
+```
+"scope": ["$DOCUMENT/YOURCUSTOMDIRNAME/logs"]
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## This can be utilized to write logs of certain specified actions:
 
-### `yarn eject`
+```
+function criticalFunction() {
+	try {
+		tauriLog("critical function success")
+	}
+	catch (e)
+		tauriLog("Crashed: " e)
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**To use the logger, place the function**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+initializeLogger()
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+inside your index.js/ts file
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+**Then use**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+tauriLog(action)
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**whenever you want to log something**
+
+
+Errors produced by your frontend are logged automaticly unless you set the option to **false**
+
+```
+initializeLogger({
+	reportErrors: false
+})
+```
+
+A DiagnosticReport is also included **by default** unless turned off (includes appName, appVersion and the used tauriVersion)
+
+```
+initializeLogger({
+	diagnosticReport: false
+})
+```
+
+
+
+**The default directory where the logs are stored is the Document folder, inside which a directory with you app name will be created**
+
+The app name is retrieved from the **config file** created by tauri
+
+Example:
+
+```
+"package": {
+        "productName": "your-appname",
+    },
+```
+
+
+
+You can also set a **custom dir** that will be created in the **Document Folder**
+
+```
+initializeLogger({
+	customDirName: "yourDirName"
+})
+```
+
+
+
+If you encounter any problems or want to contribute feel free to do so!!!
+
+[Github Repo](https://github.com/Dan0xE/tauri-logger/)
