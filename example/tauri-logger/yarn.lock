@@ -2003,6 +2003,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.42.tgz#d7e8f22700efc94d125103075c074396b5f41f9b"
   integrity sha512-Q5BPGyGKcvQgAMbsr7qEGN/kIPN6zZecYYABeTDBizOsau+2NMdSVTar9UQw21A2+JyA2KRNDYaYrPB0Rpk2oQ==
 
+"@types/node@^12.0.0":
+  version "12.20.55"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
+  integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
+
 "@types/node@^16.7.13":
   version "16.11.39"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.39.tgz#07223cd2bc332ad9d92135e3a522eebdee3b060e"
@@ -8198,6 +8203,14 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
+
+tauri-logger@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tauri-logger/-/tauri-logger-1.0.5.tgz#82481fea59657954a5338d6b105cee0906534e43"
+  integrity sha512-MgjWZUm6NIf9YUhSXOJBE7zEwACbRdi516gIYlLAhk3EGqV9/nWdCvPPRlvvs5pB+NyiNGuJO/de/MJKwmvPtg==
+  dependencies:
+    "@tauri-apps/api" "^1.0.0-rc.6"
+    "@types/node" "^12.0.0"
 
 temp-dir@^2.0.0:
   version "2.0.0"

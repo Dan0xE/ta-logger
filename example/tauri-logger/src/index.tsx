@@ -2,12 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-
-import { intitializeLogger } from "./utils";
-
-intitializeLogger({
-    reportErrors: true,
-});
+import { initializeLogger } from "tauri-logger";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -17,5 +12,3 @@ root.render(
         <App />
     </React.StrictMode>
 );
-
-

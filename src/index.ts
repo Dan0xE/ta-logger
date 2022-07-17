@@ -44,7 +44,6 @@ async function diagnosticLogger() {
     });
 }
 
-//optional! => remove later or check if folder is already existsing or creating logs folder
 export function intitializeLogger({
     reportErrors,
     customDirName,
@@ -98,8 +97,6 @@ export function intitializeLogger({
         diagnosticLogger();
     }
 }
-
-//check if in prod env => dont need
 
 async function createLog() {
     try {
@@ -169,5 +166,4 @@ export async function tauriLog(
         }
     };
     writeTempLog();
-    console.log(content);
 }
