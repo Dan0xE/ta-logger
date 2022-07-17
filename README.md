@@ -1,5 +1,6 @@
 ## Log critical actions through your frontend like you would do with console.log and store them locally!
 
+! Important - My SSD Fried a few weeks ago so i lost all my unpushed work, leaving me with some spaghetti code here. I will try my best to update the codebase accordingly, and will look out if there's some stuff that changed in the tauri api !
 
 ## IMPORTANT! Don't forget to set your scopes:
 
