@@ -133,4 +133,5 @@ tauri-logger/src-tauri/target
 
 
 # build folder
-build
+build/
+package/
