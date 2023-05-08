@@ -1,106 +1,124 @@
-## Log critical actions through your frontend like you would do with console.log and store them locally!
+# TaLog
 
-! Important - My SSD Fried a few weeks ago so i lost all my unpushed work, leaving me with some spaghetti code here. I will try my best to update the codebase accordingly, and will look out if there's some stuff that changed in the tauri api. Also the NPM Package seems to be broken, i am working on that !
+> A frontend logger for Tauri applications, designed to log critical actions and store them locally for easy debugging and analysis.
 
-## IMPORTANT! Don't forget to set your scopes:
+---
 
+## 🚨 Important Notice
 
-**If you use the default dir-name option (see below)**
+Due to an SSD failure a few weeks ago, I lost all my uncommitted work, leaving behind some unorganized code in this repository. I am doing my best to update the codebase accordingly, and monitoring for any changes in the Tauri API. Additionally, the NPM Package appears to be malfunctioning, and I am working to address that issue.
 
-```
+---
 
+## 🛠️ Configuration: Set Your Scopes
+
+### For the default directory name option:
+
+```json
 "tauri": {
-        "allowlist": {
-		"fs": {
-			"createDir": true,
-			"writeFile": true,
-			"scope": ["$DOCUMENT/YOURAPPNAME/logs"]
-			}
-		}
+  "allowlist": {
+    "fs": {
+      "createDir": true,
+      "writeFile": true,
+      "scope": [
+        "$DOCUMENT/YOURAPPNAME/logs"
+      ]
+    }
+  }
 }
 ```
 
+### For a custom directory name, modify YOURAPPNAME accordingly:
 
-Or if you use a **custom dir name** you will have to change the YOURAPPNAME accordingly
-
-```
+```json
 "scope": ["$DOCUMENT/YOURCUSTOMDIRNAME/logs"]
 ```
 
+---
 
+## 📝 Usage: Log Specified Actions
 
-## This can be utilized to write logs of certain specified actions:
-
-```
+```ts
 function criticalFunction() {
-	try {
-		tauriLog("critical function success")
-	}
-	catch (e)
-		tauriLog("Crashed: " e)
+  try {
+    tauriLog("critical function success");
+  } catch (e) {
+    tauriLog("Crashed: ", e);
+  }
 }
 ```
 
-**To use the logger, place the function**
+### Initialize the logger:
 
-```
-initializeLogger()
-```
+Insert the following function into your `index.js` or `index.ts` (entry) file.
 
-inside your index.js/ts file
-
-
-**Then use**
-
-```
-tauriLog(action)
+```ts
+initializeLogger();
 ```
 
-**whenever you want to log something**
+### Log actions:
 
+Use the following function to log actions as needed.
 
-Errors produced by your frontend are logged automaticly unless you set the option to **false**
-
+```ts
+tauriLog(action);
 ```
+
+---
+
+## ⚙️ Options
+
+### Frontend error logging:
+Errors are logged automatically unless the option is set to **false**:
+
+```ts
 initializeLogger({
-	reportErrors: false
-})
+  reportErrors: false
+});
 ```
 
-A DiagnosticReport is also included **by default** unless turned off (includes appName, appVersion and the used tauriVersion)
+### Diagnostic report:
 
-```
+A DiagnosticReport is included by **default** unless disabled (includes appName, appVersion, and the utilized tauriVersion):
+
+```ts
 initializeLogger({
-	diagnosticReport: false
-})
+  diagnosticReport: false
+});
 ```
 
+---
 
+## 📁 Default Directory
 
-**The default directory where the logs are stored is the Document folder, inside which a directory with you app name will be created**
+By default, logs are stored in the Document folder, within a directory named after your app. The app name is retrieved from the **config file** created by Tauri:
 
-The app name is retrieved from the **config file** created by tauri
-
-Example:
-
-```
+```json
 "package": {
-        "productName": "your-appname",
-    },
+  "productName": "your-appname"
+}
 ```
 
+### Custom directory:
 
+You can also designate a **custom directory** to be created in the **Document Folder**:
 
-You can also set a **custom dir** that will be created in the **Document Folder**
-
-```
+```ts
 initializeLogger({
-	customDirName: "yourDirName"
-})
+  customDirName: "yourDirName"
+});
 ```
 
+---
+
+## 🤝 Contributing
+
+If you encounter any issues or wish to contribute, please feel free to do so!
 
 
-If you encounter any problems or want to contribute feel free to do so!!!
 
-[Github Repo](https://github.com/Dan0xE/tauri-logger/)
+
+
+
+
+
