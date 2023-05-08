@@ -4,12 +4,6 @@
 
 ---
 
-## 🚨 Important Notice
-
-Due to an SSD failure a few weeks ago, I lost all my uncommitted work, leaving behind some unorganized code in this repository. I am doing my best to update the codebase accordingly, and monitoring for any changes in the Tauri API. Additionally, the NPM Package appears to be malfunctioning, and I am working to address that issue.
-
----
-
 ## 🛠️ Configuration: Set Your Scopes
 
 ### For the default directory name option:
