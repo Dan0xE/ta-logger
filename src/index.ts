@@ -1,10 +1,15 @@
 import {fs} from '@tauri-apps/api';
-import {getName, getTauriVersion, getVersion} from '@tauri-apps/api/app';
+import {
+  getName as AppName,
+  getTauriVersion,
+  getVersion,
+} from '@tauri-apps/api/app';
 import {createDir} from '@tauri-apps/api/fs';
 import isDev from './constants';
 import LogLevel from './enums';
 
-let app: string;
+const app = await AppName();
+let customDir = '';
 let fileName = '';
 let content = '';
 let initialized = false;
@@ -19,7 +24,7 @@ const logStartMessage =
  */
 async function diagnosticLogger(): Promise<void> {
   const diagnosticSchema = {
-    appName: (await getName()).toString(),
+    appName: app.toString(),
     tauriVersion: (await getTauriVersion()).toString(),
     appVersion: (await getVersion()).toString(),
   };
@@ -40,7 +45,7 @@ async function diagnosticLogger(): Promise<void> {
  */
 export function initializeLogger({
   reportErrors = true,
-  customDirName = '',
+  customDirName = undefined,
   diagnosticReport = true,
 }: {
   reportErrors?: boolean;
@@ -48,14 +53,11 @@ export function initializeLogger({
   diagnosticReport?: boolean;
 } = {}) {
   try {
-    getName().then((name: string) => {
-      app = name;
-    });
-
     if (!customDirName) {
       createLogDirectory(app);
     } else {
       custom = true;
+      customDir = customDirName;
       createLogDirectory(customDirName);
     }
   } catch (e) {
@@ -84,7 +86,7 @@ export function initializeLogger({
  */
 async function createLogDirectory(dirName: string): Promise<void> {
   try {
-    await createDir(dirName + './logs', {
+    await createDir(dirName + '\\logs', {
       dir: fs.BaseDirectory.Document,
       recursive: true,
     });
@@ -121,8 +123,9 @@ async function logger(): Promise<void> {
   const writeToLog = async (): Promise<void> => {
     try {
       const path = custom
-        ? `./${custom}/logs/${fileName}`
+        ? `./${customDir}\\logs\\${fileName}`
         : `./${app}/logs/${fileName}`;
+      console.log(path);
       await fs.writeFile(
         {
           path,

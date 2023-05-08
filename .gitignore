@@ -135,3 +135,4 @@ tauri-logger/src-tauri/target
 # build folder
 build/
 package/
+ef2-test/
