@@ -1,6 +1,6 @@
 {
   "name": "ta-log",
-  "version": "1.0.0",
+  "version": "0.0.4",
   "description": "A frontend logger for Tauri applications, designed to log critical actions and store them locally for easy debugging and analysis.",
   "main": "build/",
   "repository": "git@github.com:Dan0xE/TaLog.git",
