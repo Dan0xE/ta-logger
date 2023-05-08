@@ -130,3 +130,7 @@ dist
 .pnp.*
 tauri-logger/src-tauri/target
 .idea
+
+
+# build folder
+./build
