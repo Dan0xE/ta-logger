@@ -46,7 +46,7 @@ export function initializeLogger({
   reportErrors?: boolean;
   customDirName?: string;
   diagnosticReport?: boolean;
-}) {
+} = {}) {
   try {
     getName().then((name: string) => {
       app = name;
@@ -59,7 +59,7 @@ export function initializeLogger({
       createLogDirectory(customDirName);
     }
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 
   if (reportErrors) {
@@ -70,7 +70,7 @@ export function initializeLogger({
       );
     });
   } else {
-    console.log('No Errors will be reported', LogLevel.INFO);
+    console.warn('No Errors will be reported', LogLevel.INFO);
   }
   if (diagnosticReport) {
     diagnosticLogger();
@@ -89,7 +89,7 @@ async function createLogDirectory(dirName: string): Promise<void> {
       recursive: true,
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
@@ -145,7 +145,7 @@ async function logger(): Promise<void> {
       console.log('Log file created', fileName);
       await writeToLog();
     } catch (e) {
-      console.log('Could not write to log file: ', e);
+      console.error('Could not write to log file: ', e);
     }
   } else {
     await writeToLog();

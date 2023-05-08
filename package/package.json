@@ -1,0 +1,30 @@
+{
+  "name": "ta-logger",
+  "version": "0.0.1",
+  "description": "A frontend logger for Tauri applications, designed to log critical actions and store them locally for easy debugging and analysis.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dan0xE/ta-logger.git"
+  },
+  "author": "Dan0xE <dan0xe@proton.me>",
+  "license": "MIT",
+  "keywords": [
+    "tauri-plugin",
+    "error-monitoring",
+    "logger",
+    "logging",
+    "tauri",
+    "error-reporting"
+  ],
+  "dependencies": {
+    "@tauri-apps/api": "^1.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Dan0xE/ta-logger/issues"
+  },
+  "homepage": "https://github.com/Dan0xE/ta-logger#readme"
+}
