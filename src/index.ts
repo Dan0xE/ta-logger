@@ -8,13 +8,24 @@ import {createDir} from '@tauri-apps/api/fs';
 import isDev from './constants';
 import LogLevel from './enums';
 
-const app = await AppName();
+let app: string | undefined = undefined;
 let customDir = '';
 let fileName = '';
 let content = '';
 let initialized = false;
 const date = '[' + new Date().toLocaleString() + ']';
 let custom = false;
+
+AppName()
+  .then(res => {
+    app = res as string;
+  })
+  .catch(e => {
+    if (isDev) {
+      throw new Error('Failed to get App Name\n', e);
+    }
+    console.error('Failed to get App Name\n', e);
+  });
 
 const logStartMessage =
   date + ': Tauri Logger started\n===================================\n';
@@ -24,7 +35,7 @@ const logStartMessage =
  */
 async function diagnosticLogger(): Promise<void> {
   const diagnosticSchema = {
-    appName: app.toString(),
+    appName: app!.toString(),
     tauriVersion: (await getTauriVersion()).toString(),
     appVersion: (await getVersion()).toString(),
   };
@@ -54,7 +65,7 @@ export function initializeLogger({
 } = {}) {
   try {
     if (!customDirName) {
-      createLogDirectory(app);
+      createLogDirectory(app!);
     } else {
       custom = true;
       customDir = customDirName;
