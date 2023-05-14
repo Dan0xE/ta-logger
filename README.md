@@ -37,7 +37,7 @@ function criticalFunction() {
   try {
     tauriLog("critical function success");
   } catch (e) {
-    tauriLog("Crashed: ", e);
+    tauriLog("Crashed: " + e);
   }
 }
 ```

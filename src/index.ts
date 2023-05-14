@@ -51,7 +51,7 @@ async function diagnosticLogger(): Promise<void> {
  *
  * @param {Object} options - The options for initializing the logger.
  * @param {boolean} [options.reportErrors=true] - Whether to report errors.
- * @param {string} [options.customDirName=""] - Custom directory name for logs.
+ * @param {string} [options.customDirName=undef] - Custom directory name for logs.
  * @param {boolean} [options.diagnosticReport=true] - Whether to log diagnostic information.
  */
 export function initializeLogger({
@@ -136,7 +136,6 @@ async function logger(): Promise<void> {
       const path = custom
         ? `./${customDir}\\logs\\${fileName}`
         : `./${app}/logs/${fileName}`;
-      console.log(path);
       await fs.writeFile(
         {
           path,
