@@ -7,6 +7,7 @@
 ## 🛠️ Configuration: Set Your Scopes
 
 ### For the default directory name option:
+Define the scopes in your Tauri configuration in the following manner:
 
 ```json
 "tauri": {
@@ -15,99 +16,86 @@
       "createDir": true,
       "writeFile": true,
       "scope": [
-        "$DOCUMENT/YOURAPPNAME/logs"
+        "$DOCUMENT/YOUR_APP_NAME/logs"
       ]
     }
   }
 }
 ```
 
-### For a custom directory name, modify YOURAPPNAME accordingly:
+Substitue **YOUR_APP_NAME** with the name found in your tauri config
 
 ```json
-"scope": ["$DOCUMENT/YOURCUSTOMDIRNAME/logs"]
+"package": {
+    "productName": "test-app", //<--
+    ///
+  },
 ```
+
+### For a custom directory name:
+
+```json
+"scope": ["$DOCUMENT/CUSTOM_DIRNAME/logs"]
+```
+
+Where CUSTOM_DIRNAME is the name of the directory you want to use.
+Use the directory name that you specify here and pass it to the `customDirName` option as described below.
+
 
 ---
 
-## 📝 Usage: Log Specified Actions
+
+## 📝 Usage: Log Actions As Required
+
+Logging actions:
+Utilize the `log`, `warning`, or `error` methods in the TauriLogger class to log significant events within your critical functions or actions:
 
 ```ts
 function criticalFunction() {
   try {
-    tauriLog("critical function success");
+    taLog.log("critical function success");
   } catch (e) {
-    tauriLog("Crashed: " + e);
+    taLog.error("Crashed: " + e);
   }
 }
 ```
 
 ### Initialize the logger:
-
-Insert the following function into your `index.js` or `index.ts` (entry) file.
-
-```ts
-initializeLogger();
-```
-
-### Log actions:
-
-Use the following function to log actions as needed.
+First import `taLog` from the npm package.
+Then invoke the `initializeLogger` method with appropriate options:
 
 ```ts
-tauriLog(action);
+taLog.initializeLogger({
+  reportErrors: true,
+  customDirName: "myCustomDir",
+  diagnosticReport: true,
+  consoleLog: true
+});
 ```
-
----
 
 ## ⚙️ Options
 
 ### Frontend error logging:
-Errors are logged automatically unless the option is set to **false**:
 
-```ts
-initializeLogger({
-  reportErrors: false
-});
-```
+By default, errors are automatically logged. However, you can set the `reportErrors` option to **false** if you wish to disable automatic error logging.
 
 ### Diagnostic report:
 
-A DiagnosticReport is included by **default** unless disabled (includes appName, appVersion, and the utilized tauriVersion):
+The logger provides a diagnostic report by default, which includes the application's name, version, and the utilized Tauri version. This feature can be disabled by setting the `diagnosticReport` option to **false**.
 
-```ts
-initializeLogger({
-  diagnosticReport: false
-});
-```
-
----
-
-## 📁 Default Directory
-
-By default, logs are stored in the Document folder, within a directory named after your app. The app name is retrieved from the **config file** created by Tauri:
-
-```json
-"package": {
-  "productName": "your-appname"
-}
-```
+### Console logging:
+By default, logging to the console is disabled. It can be enabled by setting the `consoleLog` option to  **true**.
 
 ### Custom directory:
-
-You can also designate a **custom directory** to be created in the **Document Folder**:
-
-```ts
-initializeLogger({
-  customDirName: "yourDirName"
-});
-```
+By passing a `customDirName` option to the `initializeLogger` method, you can specify a custom directory for your log files.
 
 ---
 
 ## 🤝 Contributing
+Should you encounter any issues or wish to contribute, you're welcome to do so!
 
-If you encounter any issues or wish to contribute, please feel free to do so!
+
+
 
 
 
