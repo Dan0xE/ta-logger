@@ -23,7 +23,7 @@ Define the scopes in your Tauri configuration in the following manner:
 }
 ```
 
-Substitue **YOUR_APP_NAME** with the name found in your tauri config
+Substitute **YOUR_APP_NAME** with the name found in your tauri config
 
 ```json
 "package": {
